@@ -23,5 +23,6 @@ void input_jogadores(int m, Jogador *jogadores) {
             scanf("%c", &aux);
         }
         printf("\n");
+        // printf("teste git apagar depois\n"); 
     }
 }
