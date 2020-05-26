@@ -1,12 +1,11 @@
 #include<stdio.h>
+
 // Verificação linear no range p, em linha, coluna ou diagonal
 // Argumentos x,y são como no plano carteziano
     // (ex.: (0,1) é para cima, (1, -1) é diagonal direita para baixo)
 char verificacao_linear(int n, char **tabuleiro, int p, char casa_analisada, int i, int j, int x, int y) {
     int verif_igual, k;
     char vencedor = ' ';
-
-    printf("Analizando em torno de %c (%d, %d)\n", tabuleiro[i][j], i, j);
 
     printf("Analise (%d, %d)\n", x, y);
 

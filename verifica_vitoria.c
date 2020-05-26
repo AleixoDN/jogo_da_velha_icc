@@ -1,5 +1,7 @@
 #include<stdio.h>
+
 #include"verificacao_linear.h"
+
 // Verifica se algum jogador venceu na jogada;
 char verifica_vitoria(int n, char **tabuleiro, int p) {
     int i, j;
@@ -7,57 +9,82 @@ char verifica_vitoria(int n, char **tabuleiro, int p) {
 
     printf("\nEntrou em verificação\n");
 
+    // Varre ponto a ponto do tabuleiro para fazer as verificações
     for(j = 0; j < n; j++) {
         for(i = 0; i < n; i++) {
 
             printf("Analizando em torno de %c (%d, %d)\n", tabuleiro[i][j], i, j);
 
+            // Verifica apenas casas que receberam uma jogada
             if(tabuleiro[i][j] != ' ') {
 
-                if(j-p+1 >= 0&&vencedor == ' ') { // Verifica se é possível fazer a analise para cima
+                // Verifica se é possível fazer a analise para cima
+                if(j-p+1 >= 0&&vencedor == ' ') {
+
+                    // Faz a analize para cima (0, 1)
                     vencedor = verificacao_linear(n, tabuleiro, p, tabuleiro[i][j], i, j, 0, 1);
 
-                    // Se é possível testar para cima E para um lado,
-                    // é possível testar para a diagonal desse lado
+                    // Verifica se é possível fazer a analise para esquerda
+                    if(i-p+1 >= 0&&vencedor == ' ') { // Permite analise na diagonal (-1, 1)
 
-                    if(i-p+1 >= 0&&vencedor == ' ') { // Verifica se é possível fazer a analise para esquerda
+                        // Faz a analise na diagonal (-1, 1)
                         vencedor = verificacao_linear(n, tabuleiro, p, tabuleiro[i][j], i, j, -1, 1);
                     }
 
-                    if(i+p-1 < n&&vencedor == ' ') { // Verifica se é possível fazer a analise para direita
+                    // Verifica se é possível fazer a analise para direita
+                    if(i+p-1 < n&&vencedor == ' ') { // Permite analise na diagonal (1, 1)
+
+                        // Faz a analise na diagonal (1, 1)
                         vencedor = verificacao_linear(n, tabuleiro, p, tabuleiro[i][j], i, j, 1, 1);
                     }
                 }
 
-                if(j+p-1 < n&&vencedor == ' ') { // Verifica se é possível fazer a analise para baixo
+                // Verifica se é possível fazer a analise para baixo
+                if(j+p-1 < n&&vencedor == ' ') {
+
+                    // Faz analise para baixo (0, -1)
                     vencedor = verificacao_linear(n, tabuleiro, p, tabuleiro[i][j], i, j, 0, -1);
 
-                    // Igualmente pra as diagonais inferiores
+                    // Verifica se é possível fazer a analise para esquerda
+                    if(i-p+1 >= 0&&vencedor == ' ') { // Permite analise diagonal (-1, -1)
 
-                    if(i-p+1 >= 0&&vencedor == ' ') { // Verifica se é possível fazer a analise para esquerda
+                        // Faz a analise na diagonal (-1, -1)
                         vencedor = verificacao_linear(n, tabuleiro, p, tabuleiro[i][j], i, j, -1, -1);
                     }
 
-                    if(i+p-1 < n&&vencedor == ' ') { // Verifica se é possível fazer a analise para direita
+                    // Verifica se é possível fazer a analise para direita
+
+                    // Verifica se é possível fazer a analise para direita
+                    if(i+p-1 < n&&vencedor == ' ') { // Permite analise diagonal (1, -1)
+
+                        // Faz a analise na diagonal (1, -1)
                         vencedor = verificacao_linear(n, tabuleiro, p, tabuleiro[i][j], i, j, 1, -1);
                     }
                 }
 
-                if(i-p+1 >= 0&&vencedor == ' ') { // Verifica se é possível fazer a analise para esquerda
+                // Verifica se é possível fazer a analise para esquerda
+                if(i-p+1 >= 0&&vencedor == ' ') {
+
+                    // Faz analise para esquerda (-1, 0)
                     vencedor = verificacao_linear(n, tabuleiro, p, tabuleiro[i][j], i, j, -1, 0);
                 }
 
-                if(i+p-1 < n&&vencedor == ' ') { // Verifica se é possível fazer a analise para direita
+                // Verifica se é possível fazer a analise para direita
+                if(i+p-1 < n&&vencedor == ' ') {
+
+                    // Faz analise para esquerda (1, 0)
                     vencedor = verificacao_linear(n, tabuleiro, p, tabuleiro[i][j], i, j, 1, 0);
                 }
-
             }
 
+            // Sai do for(i) se o vencedor é identificado para não sobreescrever
             if(vencedor != ' ') break;
         }
 
+        // Sai do for(j) se o vencedor é identificado para não sobreescrever
         if(vencedor != ' ') break;
     }
 
+    // Retorna o simbolo do vencedor encontrdo
     return vencedor;
 }

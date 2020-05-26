@@ -8,6 +8,7 @@ typedef struct {
     char tipo;
 } Jogador;
 
+// Inclusão dos headers de funções
 #include "desenha_tabuleiro.h"
 #include "input_jogadores.h"
 #include "jogada_computador.h"
@@ -15,25 +16,24 @@ typedef struct {
 #include "verificacao_linear.h"
 #include "verifica_vitoria.h"
 
+
 int main() {
 
-    int n, i, j, m, p,k=0;//k é a variavel referente ao numero de jogadas
+    int n, i, j, m, p, k;
     char aux, vencedor = ' ';
+    k = 0; // Zerando o contador de jogadas
 
     // Inicio e reforço a pseudo-aleatoriedade da função rand()
-
     srand((unsigned int)time(NULL));
     rand();
     rand();
     rand();
 
     // Input de tamanho do tabuleiro
-
     printf("Número de linhas e colunas do tabuleiro: ");
     scanf("%d", &n);
 
     // Declaração do tabuleiro no tamanho indicado
-
     char **tabuleiro;
     tabuleiro=(char**)malloc(sizeof(char)*n);
     for(int i=0;i<n;i++){
@@ -41,12 +41,10 @@ int main() {
     }
 
     // Input do tamanho da sequencia para vitoria
-
     printf("Tamanho da sequencia para vitória: ");
     scanf("%d", &p);
 
     // Input de quantos e quais jogadores serão
-
     printf("Número de jogadores: ");
     scanf("%d", &m);
     scanf("%c", &aux);
@@ -57,7 +55,6 @@ int main() {
     input_jogadores(m, jogadores);
 
     // Zerando a matriz que conterá as jogadas feitas
-
     for(j = 0; j < n; j++) {
         for(i = 0; i < n; i++) {
             tabuleiro[i][j] = ' ';
@@ -65,12 +62,10 @@ int main() {
     }
 
     // Loop que inicia jogada por jogada
-
-
     desenha_tabuleiro(n, tabuleiro);
-    while(vencedor == ' '&&k!=n*n) { // critério temporário
+    while((vencedor == ' ') && (k != n*n)) {
 
-        // Rodar jogadores, cada um em uma jogada
+        // Roda jogadores, cada um em uma jogada
         for(i = 0; i < m; i++) {
 
             // Verificar se o jogador atual é um humano ou um computador
@@ -92,13 +87,13 @@ int main() {
                 printf("O vencedor é o jogador de símbolo: %c\n", vencedor);
                 break;
             }
-	    //Break para sair do for caso dê velha, uma vez que ele sairá automaticamente do while
-            if(k==n*n){
-		printf("Velha");
-		break;
-	    }
-        }
 
+            //Break para sair do for caso dê velha, uma vez que ele sairá automaticamente do while
+            if(k == n*n){
+                printf("Velha");
+                break;
+            }
+        }
     }
 
     return 0;
