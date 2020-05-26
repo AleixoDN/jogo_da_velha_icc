@@ -20,11 +20,13 @@ ex2.o : ex2.c
 	gcc -o ex2.o -c ex2.c
 
 ex2 : ex2.o verifica_vitoria.o verificacao_linear.o jogada_humano.o jogada_computador.o input_jogadores.o desenha_tabuleiro.o
-	gcc -o ex2 ex2.o verifica_vitoria.o verificacao_linear.o jogada_humano.o jogada_computador.o input_jogadores.o desenha_tabuleiro.o
+	gcc -o ex2 *.o
+
 
 all : ex2
 
 run: ex2
 	./ex2
 
-
+clean : ex2
+	rm *.o ex2

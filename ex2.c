@@ -35,9 +35,9 @@ int main() {
 
     // Declaração do tabuleiro no tamanho indicado
     char **tabuleiro;
-    tabuleiro=(char**)malloc(sizeof(char)*n);
-    for(int i=0;i<n;i++){
-	tabuleiro[i]=malloc(sizeof(char)*n);
+    tabuleiro = (char**)malloc(sizeof(char*)*n);
+    for(int i=0; i<n; i++){
+	tabuleiro[i] = (char*)malloc(sizeof(char)*n);
     }
 
     // Input do tamanho da sequencia para vitoria
@@ -55,11 +55,15 @@ int main() {
     input_jogadores(m, jogadores);
 
     // Zerando a matriz que conterá as jogadas feitas
+    printf("Zerando o tabuleiro...\n");
     for(j = 0; j < n; j++) {
         for(i = 0; i < n; i++) {
+            printf("Zerendo casa(%d, %d)\n", i, j);
             tabuleiro[i][j] = ' ';
         }
     }
+
+    printf("Iniciando...\n");
 
     // Loop que inicia jogada por jogada
     desenha_tabuleiro(n, tabuleiro);
@@ -70,8 +74,10 @@ int main() {
 
             // Verificar se o jogador atual é um humano ou um computador
             if (jogadores[i].tipo == 'h') {
+                printf("Jogada humana\n");
                 jogada_humano(n, tabuleiro, jogadores[i]);
             } else if(jogadores[i].tipo == 'c') {
+                printf("Jogada computador\n");
                 jogada_computador(n, tabuleiro, jogadores[i]);
             }
             k++;

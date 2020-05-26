@@ -10,6 +10,8 @@ typedef struct {
 void jogada_humano(int n, char **tabuleiro, Jogador jogador) {
     int i, j;
 
+    printf("Vez do humano %c\n", jogador.simbolo);
+
     // Colhe a posição da jogada do usuário
     printf("Linha: ");
     scanf("%d", &j);

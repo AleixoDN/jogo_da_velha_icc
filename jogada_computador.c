@@ -9,6 +9,9 @@ typedef struct {
 
 // Roda uma jogada aleatória de um jogador do computador
 void jogada_computador(int n, char **tabuleiro, Jogador jogador) {
+
+    printf("Vez do computador %c\n", jogador.simbolo);
+
     int i, j;
 
     // Gera uma posição aleatória no tabuleiro

@@ -7,7 +7,7 @@ char verifica_vitoria(int n, char **tabuleiro, int p) {
     int i, j;
     char vencedor = ' ';
 
-    printf("\nEntrou em verificação\n");
+    printf("\nEntrou em verificação: \n");
 
     // Varre ponto a ponto do tabuleiro para fazer as verificações
     for(j = 0; j < n; j++) {
