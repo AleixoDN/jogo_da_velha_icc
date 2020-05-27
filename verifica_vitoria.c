@@ -21,7 +21,7 @@ char verifica_vitoria(int n, char **tabuleiro, int p) {
                 // Verifica se é possível fazer a analise para cima
                 if(j-p+1 >= 0&&vencedor == ' ') {
 
-                    // Faz a analize para cima (0, 1)
+                    // Faz a analise para cima (0, 1)
                     vencedor = verificacao_linear(n, tabuleiro, p, tabuleiro[i][j], i, j, 0, 1);
 
                     // Verifica se é possível fazer a analise para esquerda
