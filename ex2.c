@@ -15,6 +15,7 @@ typedef struct {
 #include "jogada_humano.h"
 #include "verificacao_linear.h"
 #include "verifica_vitoria.h"
+#include "inteligencia_checagem.h"
 
 
 int main() {
@@ -78,7 +79,10 @@ int main() {
                 jogada_humano(n, tabuleiro, jogadores[i]);
             } else if(jogadores[i].tipo == 'c') {
                 printf("Jogada computador\n");
-                jogada_computador(n, tabuleiro, jogadores[i]);
+		char jogada=inteligencia_checagem(n,tabuleiro,p,jogadores[i].simbolo);
+		if(jogada==' '){
+                	jogada_computador(n, tabuleiro, jogadores[i]);
+		}
             }
             k++;
 

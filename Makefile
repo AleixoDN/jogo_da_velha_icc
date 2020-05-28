@@ -16,10 +16,16 @@ verificacao_linear.o : verificacao_linear.c
 verifica_vitoria.o : verifica_vitoria.c
 	gcc -o verifica_vitoria.o -c verifica_vitoria.c
 
+inteligencia_checagem.o : inteligencia_checagem.c
+	gcc -o inteligencia_checagem.o -c inteligencia_checagem.c
+
+inteligencia_varredura.o : inteligencia_varredura.c
+	gcc -o inteligencia_varredura.o -c inteligencia_varredura.c
+
 ex2.o : ex2.c
 	gcc -o ex2.o -c ex2.c
 
-ex2 : ex2.o verifica_vitoria.o verificacao_linear.o jogada_humano.o jogada_computador.o input_jogadores.o desenha_tabuleiro.o
+ex2 : ex2.o verifica_vitoria.o verificacao_linear.o jogada_humano.o jogada_computador.o input_jogadores.o desenha_tabuleiro.o inteligencia_checagem.o inteligencia_varredura.o
 	gcc -o ex2 *.o
 
 
