@@ -47,6 +47,10 @@ int main() {
         // Input de tamanho do tabuleiro
         printf("\n    Número de linhas e colunas do tabuleiro: ");
         scanf("%d", &n);
+        while(n < 0) {
+            printf("        Valor deve ser positivo.\n    Número de linhas e colunas do tabuleiro: ");
+            scanf("%d", &n);
+        }
 
         // Declaração do tabuleiro no tamanho indicado
         char **tabuleiro;
@@ -56,12 +60,20 @@ int main() {
         }
 
         // Input do tamanho da sequencia para vitoria
-        printf("    Tamanho da sequencia para vitória: ");
+        printf("    Tamanho da sequência para vitória: ");
         scanf("%d", &p);
+        while((p > n) | (p < 0)) {
+            printf("        Sequência deve ser no máximo igual ao tamanho do tabuleiro.\n    Tamanho da sequência para vitória: ");
+            scanf("%d", &p);
+        }
 
         // Input de quantos e quais jogadores serão
         printf("    Número de jogadores: ");
         scanf("%d", &m);
+        while(m < 0) {
+            printf("        Valor deve ser positivo.\n    Número de jogadores: ");
+            scanf("%d", &m);
+        }
         scanf("%c", &aux);
 
         Jogador *jogadores;
@@ -78,10 +90,10 @@ int main() {
             }
         }
 
-        printf("Iniciando...\n");
+        // printf("Iniciando...\n");
 
         // Loop que inicia jogada por jogada
-        desenha_tabuleiro(n, tabuleiro);
+        //desenha_tabuleiro(n, tabuleiro, jogadores);
         while((vencedor == ' ') && (k != n*n)) {
 
             // Roda jogadores, cada um em uma jogada
@@ -90,6 +102,7 @@ int main() {
                 // Verificar se o jogador atual é um humano ou um computador
                 if (jogadores[i].tipo == 'h') {
                     //printf("Jogada humana\n");
+                    desenha_tabuleiro(n, tabuleiro, jogadores[i]);
                     jogada_humano(n, tabuleiro, jogadores[i]);
                 } else if(jogadores[i].tipo == 'c') {
                     //printf("Jogada computador\n");
@@ -97,14 +110,12 @@ int main() {
                     if(jogada==' '){
                         jogada_computador(n, tabuleiro, jogadores[i]);
                     }
+                    desenha_tabuleiro(n, tabuleiro, jogadores[i]);
                 }
                 k++;
 
                 // Verifica se o jogador ganhou com a ultima jogada
                 vencedor = verifica_vitoria(n, tabuleiro, p);
-
-                // Desenha o tabuleiro contendo a ultima jogada
-                desenha_tabuleiro(n, tabuleiro);
 
                 // Break para sair do for, uma vez que ele sairá automaticamente do while
                 if(vencedor != ' ') {

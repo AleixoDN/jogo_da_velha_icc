@@ -10,22 +10,24 @@ typedef struct {
 void jogada_humano(int n, char **tabuleiro, Jogador jogador) {
     int i, j;
 
-    printf("Vez do humano %c\n", jogador.simbolo);
+    //printf("Vez do humano %c\n", jogador.simbolo);
 
     // Colhe a posição da jogada do usuário
-    printf("Linha: ");
+    printf("    >> Linha: ");
     scanf("%d", &j);
-    printf("Coluna: ");
+    printf("    >> Coluna: ");
     scanf("%d", &i);
 
     // Garante que a posição é válida e ainda vazia
     while((tabuleiro[i-1][j-1] != ' ') || (i < 1) || (i > n) || (j < 1) || (j > n)) {
-        printf("Linha: ");
+        printf("        Valores inválidos.\n");
+        printf("    >> Linha: ");
         scanf("%d", &j);
-        printf("Coluna: ");
+        printf("    >> Coluna: ");
         scanf("%d", &i);
     }
     printf("\n");
+    getchar();
 
     // Retorna para a matriz de jogadas a jogada feita pelo usuário
     tabuleiro[i-1][j-1] = jogador.simbolo;

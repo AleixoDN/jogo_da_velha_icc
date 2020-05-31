@@ -9,7 +9,7 @@ typedef struct {
 
 // Coleta as informações dos m jogadores
 void input_jogadores(int m, Jogador *jogadores) {
-    int i;
+    int i, j, eq;
     char aux;
 
     system("clear");
@@ -26,6 +26,22 @@ void input_jogadores(int m, Jogador *jogadores) {
         printf("    Símbolo para representar o jogador %d: ", i+1);
         scanf("%c", &jogadores[i].simbolo);
         scanf("%c", &aux);
+        eq = 1;
+
+        while(eq == 1) {
+            eq = 0;
+
+            for(j = 0; j < i; j++) {
+                if(jogadores[i].simbolo == jogadores[j].simbolo) {
+                    eq = 1;
+                }
+            }
+            if(eq == 1) {
+                printf("        Simbolo já usado.\n    Símbolo para representar o jogador %d: ", i+1);
+                scanf("%c", &jogadores[i].simbolo);
+                scanf("%c", &aux);
+            }
+        }
 
         // Colhe o tipo do jogador i
         printf("    Jogador %d será um humano ou um computador[h/c]: ", i+1);
