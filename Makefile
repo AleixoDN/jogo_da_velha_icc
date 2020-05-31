@@ -1,7 +1,7 @@
 desenha_tabuleiro.o : desenha_tabuleiro.c
 	gcc -o desenha_tabuleiro.o -c desenha_tabuleiro.c
 
-input_jogadores.o : input_jogadores.h
+input_jogadores.o : input_jogadores.c
 	gcc -o input_jogadores.o -c input_jogadores.c
 
 jogada_computador.o : jogada_computador.c
