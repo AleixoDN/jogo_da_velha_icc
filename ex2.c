@@ -105,6 +105,6 @@ int main() {
             }
         }
     }
-
+	free(tabuleiro);
     return 0;
 }
